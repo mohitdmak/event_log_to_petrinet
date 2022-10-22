@@ -104,7 +104,7 @@ def verify_extension_and_import():
             """
 
     #file_path ="Prozessmodel.xes"
-    read_input_file_path()
+    file_path = read_input_file_path()
     file_name, file_extension = os.path.splitext(file_path)
     file_extension = file_extension.replace("'))", "")
     print("File Extension: ", file_extension)
