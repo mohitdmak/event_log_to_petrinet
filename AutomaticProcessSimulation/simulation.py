@@ -14,7 +14,11 @@ from pm4py.objects.petri import semantics
 from pm4py.util import xes_constants
 import sys, importlib
 import methods
-#from pm4py.statistics.traces.log.case_arrival import get_case_arrival_avg
+
+### NOTE: below lines are edited to fix bug due to depreciation
+from pm4py.statistics.traces.generic.log.case_arrival import get_case_arrival_avg
+# from pm4py.statistics.traces.log.case_arrival import get_case_arrival_avg
+
 from pm4py.util.business_hours import BusinessHours
 
 importlib.reload(sys.modules['methods'])
