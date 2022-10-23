@@ -1,0 +1,27 @@
+case_id,activity,time:timestamp
+Case 1,register request,2022-10-25 06:52:13.375802
+Case 1,examine thoroughly,2022-10-26 05:56:13.376331
+Case 2,register request,2022-10-26 17:16:13.376766
+Case 2,check ticket,2022-10-27 16:20:13.377172
+Case 2,examine thoroughly,2022-10-27 18:24:13.377464
+Case 3,register request,2022-10-28 03:40:13.377911
+Case 3,examine thoroughly,2022-10-29 02:44:13.378305
+Case 1,check ticket,2022-10-31 11:02:13.378533
+Case 1,decide,2022-10-31 13:06:13.378750
+Case 2,decide,2022-11-01 23:30:13.378969
+Case 3,check ticket,2022-11-03 07:50:13.379185
+Case 3,decide,2022-11-03 09:54:13.379397
+Case 1,reinitiate request,2022-11-06 13:56:13.379716
+Case 1,examine casually,2022-11-06 14:44:13.380148
+Case 2,pay compensation,2022-11-08 00:20:13.380560
+Case 3,reinitiate request,2022-11-09 10:44:13.380805
+Case 3,check ticket,2022-11-09 11:32:13.381166
+Case 3,examine thoroughly,2022-11-09 13:36:13.381413
+Case 2,case end,2022-11-11 02:15:13.381588
+Case 1,check ticket,2022-11-12 11:50:13.382451
+Case 1,decide,2022-11-12 13:54:13.382897
+Case 3,decide,2022-11-14 18:42:13.383448
+Case 1,reject request,2022-11-18 14:44:13.384037
+Case 3,pay compensation,2022-11-20 19:32:13.384473
+Case 1,case end,2022-11-21 09:48:58.384662
+Case 3,case end,2022-11-23 21:27:13.385348

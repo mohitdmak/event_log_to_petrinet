@@ -1,13 +1,49 @@
+import sys
 import pm4py
+import subprocess
 import pandas as pd 
 from pathlib import Path
 from pm4py.utils import EventLog
 
 
 class LogFileToNets:
+    LIB_SIMULATION_EXC = "AutomaticProcessSimulation/simulation.py"
+    DEFAULT_SIMULATION_LOGS = "simulated-logs.csv"
+
     def __init__(self) -> None:
         print("Starting Event log to Petri Nets driver . . .")
-        logs = self.get_logs_from_log_file()
+        print("Do you want to generate simulated CSV file from custom Log File? (y for Yes, else proceed)")
+        res = str(input())
+        if res == 'y':
+            self.net_generation_custom_log_file()
+        else:
+            self.direct_net_generation()
+
+    def net_generation_custom_log_file(self):
+        print("Please write relative/absolute location of your Custom Log File > > >")
+        file_path = str(input())
+        print(f"< < < File Path recieved: {file_path}")
+        file = Path(file_path)
+        if not file.exists():
+            raise FileExistsError(f"Given File: `{file}` does not exist < < <") 
+        else:
+            print(f"Given File: `{file}` exists...")
+            command = f"python {self.LIB_SIMULATION_EXC} {file}"
+            # process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+            process = subprocess.Popen(command.split())
+            output, error = process.communicate()
+            if not error:
+                print(f"Simulated Log file created successfully at: `{self.DEFAULT_SIMULATION_LOGS}` < < <")
+                logs = self.read_csv(Path(self.DEFAULT_SIMULATION_LOGS))
+                self.direct_net_generation(logs)
+                return
+            else:
+                print(error)
+                raise Exception("ERROR: Could not generate simulated csv log file from your custom file < < <")
+
+    def direct_net_generation(self, logs: EventLog | pd.DataFrame | None = None):
+        if not logs:
+            logs = self.get_logs_from_log_file()
         net_type = -1
         get_net = None
         generate_net = {0: self.create_process_graph, 1: self.create_dmg, 2: self.create_heuristics_net}
@@ -17,6 +53,8 @@ class LogFileToNets:
                 net_type = int(input())
                 get_net = generate_net[net_type]
                 print(f"< < < Net Type recieved: {generate_net[net_type]}")
+            except KeyboardInterrupt:
+                sys.exit()
             except:
                 print("Please enter '0' or '1' or '2' only...")
         print("Generating Petri Net > > >")
@@ -33,9 +71,11 @@ class LogFileToNets:
                 file_type_inp = int(input())
                 get_logs = getting_log_wrapper[file_type_inp]
                 print(f"< < < File Type recieved: {file_type[file_type_inp]}")
+            except KeyboardInterrupt:
+                sys.exit()
             except:
                 print("Please enter '0' or '1' only, as only xes/csv file formats are supported...")
-        print("Please write absolute location of Log File input > > >")
+        print("Please write relative/absolute location of Log File input > > >")
         file_path = str(input())
         print(f"< < < File Path recieved: {file_path}")
         file = Path(file_path)
