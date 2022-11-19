@@ -1,0 +1,7 @@
+case_id,activity,time:timestamp
+Case 1,register request,2022-11-20 19:40:13.001842
+Case 1,check ticket,2022-11-21 18:44:13.002356
+Case 1,examine casually,2022-11-21 20:48:13.002624
+Case 1,decide,2022-11-27 17:54:13.002926
+Case 1,reject request,2022-12-03 18:44:13.003434
+Case 1,case end,2022-12-06 13:48:58.003650
