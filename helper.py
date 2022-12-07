@@ -33,10 +33,21 @@ def standardizeCsv(file_path):
         writer = csv.writer(open(file, 'w'), delimiter=',')
         writer.writerows(row for row in reader)
         
+def filterCsv(file_path):
+    rows = [*csv.DictReader(open(file_path))];
+    rows_mh = [row for row in rows if row["name"] == "MH"]
+    rows_ml = [row for row in rows if row["name"] == "ML"]
+    # rows_460 = [row for row in rows if row["Substation"] == "Substation460"]
+    df_mh = pd.DataFrame(rows_mh)
+    df_ml = pd.DataFrame(rows_ml)
+    # df_460 = pd.DataFrame(rows_460)
+    df_mh.to_csv("out_mh.csv", index=False, header=True)
+    df_ml.to_csv("out_ml.csv", index=False, header=True)
+    # df_460.to_csv("out_460.csv", index=False, header=True)
     
 
 if __name__ == "__main__":
-    print("What action do you need to do?\n    1: Convert Xes to Csv\n    2: Standardize Csv File (delimeter)")
+    print("What action do you need to do?\n    1: Convert Xes to Csv\n    2: Standardize Csv File (delimeter)\n    3: Filter CSV Eventlogs")
     action = int(input())
     if action == 1:
         print("Write relative/absolute file path of xes file:")
@@ -48,3 +59,7 @@ if __name__ == "__main__":
         print("Write relative/absolute file path of the csv file:")
         file_path = str(input())
         standardizeCsv(file_path)
+    elif action == 3:
+        print("Write relative/absolute file path of the csv file:")
+        file_path = str(input())
+        filterCsv(file_path)
