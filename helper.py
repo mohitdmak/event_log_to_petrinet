@@ -35,14 +35,14 @@ def standardizeCsv(file_path):
         
 def filterCsv(file_path):
     rows = [*csv.DictReader(open(file_path))];
-    rows_mh = [row for row in rows if row["name"] == "MH"]
-    rows_ml = [row for row in rows if row["name"] == "ML"]
+    rows_mh = [row for row in rows if row["brand"] == "irisk"]
+    # rows_ml = [row for row in rows if row["name"] == "ML"]
     # rows_460 = [row for row in rows if row["Substation"] == "Substation460"]
     df_mh = pd.DataFrame(rows_mh)
-    df_ml = pd.DataFrame(rows_ml)
+    # df_ml = pd.DataFrame(rows_ml)
     # df_460 = pd.DataFrame(rows_460)
-    df_mh.to_csv("out_mh.csv", index=False, header=True)
-    df_ml.to_csv("out_ml.csv", index=False, header=True)
+    df_mh.to_csv("new_out_mh.csv", index=False, header=True)
+    # df_ml.to_csv("out_ml.csv", index=False, header=True)
     # df_460.to_csv("out_460.csv", index=False, header=True)
     
 
