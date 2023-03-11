@@ -35,7 +35,7 @@ def standardizeCsv(file_path):
         
 def filterCsv(file_path):
     rows = [*csv.DictReader(open(file_path))];
-    rows_mh = [row for row in rows if row["brand"] == "irisk"]
+    rows_mh = [row for row in rows if row["user_id"] == "494077766"]
     # rows_ml = [row for row in rows if row["name"] == "ML"]
     # rows_460 = [row for row in rows if row["Substation"] == "Substation460"]
     df_mh = pd.DataFrame(rows_mh)
